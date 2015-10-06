@@ -99,6 +99,7 @@ set go=-t
 set background=dark
 
 set spell spelllang=en_us,pt
+set spell!
 
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
@@ -222,9 +223,13 @@ fun! ScratchOnLeave()
     exec l:winNum . "wincmd c"
 endfu
 
-fun! ScratchShowUp() 
+fun! ScratchToggle() 
     let l:winNum = bufwinnr(s:ScratchBufName)
     if l:winNum != -1
+        if l:winNum == winnr()
+            :q
+            return
+        endif
         execute l:winNum . "wincmd w"
         return
     endif
@@ -234,11 +239,6 @@ fun! ScratchShowUp()
         return 
     endif
 
-    fun! EvalLine ()
-        let l:line = getline(".")
-        call "py " . l:line
-    endfun
-
     exec "new __scratch__"
     exec "setlocal hidden"
     exec "setlocal buftype=nofile"
@@ -246,13 +246,7 @@ fun! ScratchShowUp()
     exec "au BufLeave <buffer> call ScratchOnLeave()"
 endfunction
 
-command! Scratch call ScratchShowUp()
+command! Scratch call ScratchToggle()
 nnoremap <tab> :Scratch<cr>
-
-fun! WipeoutUndesirableChars ()
-    %s/\s\+$//
-endfun
-
-command! Wipeout call WipeoutUndesirableChars()
 
 "}}}
