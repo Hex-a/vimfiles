@@ -18,34 +18,35 @@ set rtp+=$HOME/$VIMFILES/bundle/vundle/
 
 call vundle#begin()
 
-Plugin 'gmarik/Vundle'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Rip-Rip/clang_complete.git'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'noahfrederick/vim-hemisu'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'chriskempson/base16-vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'msanders/snipmate.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'gmarik/vundle'
-Plugin 'itchyny/lightline.vim'
+Plugin 'widatama/vim-phoenix'
 Plugin 'jnwhiteh/vim-golang'
-Plugin 'kien/ctrlp.vim'
-Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'kikijump/tslime.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'msanders/snipmate.vim'
-Plugin 'noahfrederick/vim-hemisu'
-Plugin 'nvie/vim-flake8'
-Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/SearchComplete'
-Plugin 'widatama/vim-phoenix'
-Plugin 'wting/rust.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'tmhedberg/matchit'
 Plugin 'Quramy/tsuquyomi'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'fatih/vim-go'
 Plugin 'isRuslan/vim-es6'
+Plugin 'mattn/emmet-vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'kien/ctrlp.vim'
+Plugin 'wting/rust.vim'
+Plugin 'gmarik/Vundle'
+Plugin 'gmarik/vundle'
+Plugin 'fatih/vim-go'
+Plugin 'sjl/badwolf'
 
 call vundle#end()
 filetype plugin indent on 
@@ -86,10 +87,10 @@ set clipboard=unnamed "use '*' as bridge to system clipboard
 " Indentation
 set autoindent
 set smartindent
-set expandtab
 set tabstop=4
-set shiftwidth=4
 set softtabstop=4
+set expandtab
+set shiftwidth=4
 
 set guicursor+=a:blinkon0
 
@@ -124,7 +125,8 @@ if $COLORTERM == "gnome-terminal"
     set t_Co=256
     colorscheme jellybeans
 else 
-    colorscheme base16-eighties
+    " colorscheme base16-eighties
+    colorscheme badwolf
 endif
 
 " colorscheme hemisu
@@ -194,7 +196,6 @@ au Syntax * RainbowParenthesesLoadBraces
 " LIGHT LINE {{{
 " ----------------------------------------------------------------------------
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night',
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
       \ },
@@ -209,6 +210,8 @@ if !has("gui_running") || 1
     call remove(g:lightline, 'separator') " unlet could be used too
     call remove(g:lightline, 'subseparator')
 endif
+
+let g:lightline.colorscheme = 'powerline'
 
 " }}}
 
