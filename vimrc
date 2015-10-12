@@ -81,7 +81,7 @@ set cursorline
 set backspace=indent,eol,start
 set hidden
 set autoread
-set clipboard=unnamedplus "use '+' as bridge to system clipboard
+set clipboard=unnamed "use '*' as bridge to system clipboard
 
 " Indentation
 set autoindent
@@ -248,5 +248,11 @@ endfunction
 
 command! Scratch call ScratchToggle()
 nnoremap <tab> :Scratch<cr>
+
+fun! Jprettify ()
+    :1,$!cmd /c D:\Tools\jq-win64.exe .
+endfu
+
+command! JSPrettify call Jprettify()
 
 "}}}
